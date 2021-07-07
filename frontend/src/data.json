@@ -1,0 +1,247 @@
+{
+  "user": {
+    "name": "Lê Văn Lộc"
+  },
+  "data": [
+    {
+      "id": "010100120101",
+      "name": "Đại số",
+      "credit": "2",
+      "mark": "2.00"
+    },
+    {
+      "id": "010100500121",
+      "name": "Nguyên lý CBCN Mác-Lênin",
+      "credit": "5",
+      "mark": "2.50"
+    },
+    {
+      "id": "010100601143",
+      "name": "Tiếng Anh cơ bản 1",
+      "credit": "4",
+      "mark": "2.00"
+    },
+    {
+      "id": "010112200202",
+      "name": "Toán rời rạc",
+      "credit": "2",
+      "mark": "2.00"
+    },
+    {
+      "id": "010112500002",
+      "name": "Kiến trúc máy tính",
+      "credit": "3",
+      "mark": "3.00"
+    },
+    {
+      "id": "010100120202",
+      "name": "Giải tích 1",
+      "credit": "3",
+      "mark": "4.00"
+    },
+    {
+      "id": "010100500406",
+      "name": "Pháp luật đại cương",
+      "credit": "2",
+      "mark": "2.50"
+    },
+    {
+      "id": "010100120504",
+      "name": "Toán chuyên đề 1",
+      "credit": "3",
+      "mark": "3.50"
+    },
+    {
+      "id": "010100500203",
+      "name": "Tư tưởng Hồ Chí Minh",
+      "credit": "2",
+      "mark": "3.00"
+    },
+    {
+      "id": "010100601201",
+      "name": "Tiếng Anh 4",
+      "credit": "4",
+      "mark": "2.50"
+    },
+    {
+      "id": "010112100001",
+      "name": "Cơ sở dữ liệu",
+      "credit": "3",
+      "mark": "3.50"
+    },
+    {
+      "id": "010112400102",
+      "name": "Kỹ thuật lập trình",
+      "credit": "3",
+      "mark": "3.50"
+    },
+    {
+      "id": "010112400202",
+      "name": "Cấu trúc dữ liệu và giải thuật",
+      "credit": "3",
+      "mark": "3.50"
+    },
+    {
+      "id": "010100500305",
+      "name": "Đường lối CM của đảng CSVN",
+      "credit": "3",
+      "mark": "3.00"
+    },
+    {
+      "id": "010112100202",
+      "name": "Thiết kế cơ sở dữ liệu",
+      "credit": "3",
+      "mark": "4.00"
+    },
+    {
+      "id": "010112100302",
+      "name": "Hệ quản trị cơ sở dữ liệu",
+      "credit": "3",
+      "mark": "3.00"
+    },
+    {
+      "id": "010112103102",
+      "name": "Lập trình web",
+      "credit": "3",
+      "mark": "4.00"
+    },
+    {
+      "id": "010112200302",
+      "name": "Lập trình hướng đối tượng",
+      "credit": "3",
+      "mark": "4.00"
+    },
+    {
+      "id": "010112500101",
+      "name": "Hệ điều hành",
+      "credit": "3",
+      "mark": "3.00"
+    },
+    {
+      "id": "010100612101",
+      "name": "Tiếng Anh chuyên ngành CNTT 1",
+      "credit": "3",
+      "mark": "3.00"
+    },
+    {
+      "id": "010112200501",
+      "name": "Công nghệ phần mềm",
+      "credit": "2",
+      "mark": "4.00"
+    },
+    {
+      "id": "010112203601",
+      "name": "Lập trình java",
+      "credit": "2",
+      "mark": "4.00"
+    },
+    {
+      "id": "010112203801",
+      "name": "CĐ Hệ Thống GT Thông minh",
+      "credit": "3",
+      "mark": "2.50"
+    },
+    {
+      "id": "010112300201",
+      "name": "Mạng máy tính",
+      "credit": "3",
+      "mark": "2.00"
+    },
+    {
+      "id": "010112400302",
+      "name": "Phân tích thiết kế giải thuật",
+      "credit": "3",
+      "mark": "3.50"
+    },
+    {
+      "id": "010112200403",
+      "name": "Lí thuyết đồ thị",
+      "credit": "2",
+      "mark": "3.00"
+    },
+    {
+      "id": "010112203901",
+      "name": "Đố án thực tế Công nghệ phần mềm",
+      "credit": "3",
+      "mark": "4.00"
+    },
+    {
+      "id": "010112300502",
+      "name": "Quản trị mạng",
+      "credit": "3",
+      "mark": "4.00"
+    },
+    {
+      "id": "010112301302",
+      "name": "Lập trình mạng",
+      "credit": "3",
+      "mark": "4.00"
+    },
+    {
+      "id": "010112301501",
+      "name": "Quản trị dự án CNTT",
+      "credit": "3",
+      "mark": "4.00"
+    },
+    {
+      "id": "010112303301",
+      "name": "An toàn thông tin",
+      "credit": "3",
+      "mark": "4.00"
+    },
+    {
+      "id": "010100612202",
+      "name": "Tiếng Anh chuyên ngành CNTT 2",
+      "credit": "3",
+      "mark": "3.00"
+    },
+    {
+      "id": "010112301601",
+      "name": "Kỹ năng làm việc",
+      "credit": "3",
+      "mark": "4.00"
+    },
+    {
+      "id": "010100121001",
+      "name": "Tối ưu hóa",
+      "credit": "2",
+      "mark": "4.00"
+    },
+    {
+      "id": "010112100801",
+      "name": "Phân tích thiết kế hệ thống",
+      "credit": "3",
+      "mark": "4.00"
+    },
+    {
+      "id": "010112201001",
+      "name": "XD phần mềm hướng đối tượng",
+      "credit": "3",
+      "mark": "2.50"
+    },
+    {
+      "id": "010112401208",
+      "name": "Tin học cơ bản",
+      "credit": "2",
+      "mark": "3.00"
+    },
+    {
+      "id": "010112600003",
+      "name": "Thực tập tốt nghiệp",
+      "credit": "3",
+      "mark": "4.00"
+    },
+    {
+      "id": "010112303201",
+      "name": "Thiết kế mạng",
+      "credit": "2",
+      "mark": "4.00"
+    },
+    {
+      "id": "010112600101",
+      "name": "Luận văn TN/ học bổ sung",
+      "credit": "10",
+      "mark": "4.00"
+    }
+  ]
+}
