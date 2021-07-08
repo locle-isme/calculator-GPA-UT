@@ -5,13 +5,25 @@
         <div class="card">
           <div class="card-body">
 
-            <div class="d-flex">
-              <div class="box-info d-flex flex-grow-1 flex-column p-2">
-                <div class="user-name">{{ user.name || "#Unknown" }}</div>
-                <div>GPA của bạn là <span class="fw-bolder">{{ getGPA }}</span></div>
-                <div>Tổng số tín chỉ <span class="fw-bolder">{{ totalCredits }}</span></div>
+            <div class="d-flex flex-column">
+              <div class="box-info d-flex flex-column flex-md-row flex-nowrap p-2">
+                <div class="d-flex flex-column" style="min-width: 200px;">
+                  <div class="user-name">{{ user.name || "#Unknown" }}</div>
+                  <div>GPA của bạn là <span class="fw-bolder">{{ getGPA }}</span></div>
+                  <div>Tổng số tín chỉ <span class="fw-bolder">{{ totalCredits }}</span></div>
+                </div>
+                <div class="d-flex flex-grow-1 flex-column">
+                  <h6 class="message mb-0">{{ getTextMessage }}</h6>
+                  <small class="text-danger mb-1" v-if="getTextMessage">*Điều kiện: tổng số tín chỉ học lại không vượt quá 5% của tổng tín chỉ
+                    ~
+                    {{ Math.round(totalCredits / 100 * 5) }} tín chỉ.</small>
+                  <div class="mb-1" v-html="getTextMandatoryCondition"></div>
+                  <div class="mb-1" v-html="getTextSufficientCondition"></div>
+                  <div class="mb-1">{{ getSuggest }}</div>
+                </div>
+
               </div>
-              <div class="d-flex flex-grow-1 flex-column">
+              <div class="d-flex flex-column">
                 <div class="clearfix w-100 mb-2">
                   <button class="btn btn-sm btn-danger float-end" @click="reset()">Reset từ đầu</button>
                 </div>
@@ -26,11 +38,11 @@
             <div class="clearfix">
               <button class="btn btn-sm btn-success float-end" @click="setShowModal(1)">Thêm</button>
             </div>
-            <div class="table-responsive">
+            <div class="table-responsive-md">
               <table class="table">
                 <thead>
                 <tr>
-                  <th scope="col" style="width: 20%">
+                  <th scope="col" style="width: 130px">
                     <button class="btn btn-sm btn-primary ml-0" @click="handleSelectAll()">{{ textSelectAllBtn }}
                     </button>
                   </th>
@@ -42,20 +54,20 @@
                 </thead>
                 <tbody>
                 <template v-for="course in tableMark">
-                  <tr :key="'course' + course.id" :class="{'table-danger': parseFloat(course.mark) === 0}">
-                    <th scope="row">
+                  <tr :key="'course' + course.id" :class="getClassRowCourse(course)">
+                    <td scope="row" class="">
                       <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="1" v-model="course.selected">
+                        <input class="form-check-input mx-auto" type="checkbox" value="1" v-model="course.selected">
                       </div>
-                    </th>
+                    </td>
                     <td v-html="course.name"></td>
                     <td>{{ course.credit }}</td>
                     <td>{{ parseFloat(course.mark).toFixed(2) }}</td>
                     <td>
                       <div class="clearfix">
-                        <button class="btn btn-sm bg-warning text-dark float-start" @click="editCourse(course)"><i
+                        <button class="btn btn-sm bg-warning text-dark float-start mb-1" @click="editCourse(course)"><i
                             class="bi bi-pencil-square"></i></button>
-                        <button class="btn btn-sm bg-danger text-light float-end" @click="removeCourse(course)">
+                        <button class="btn btn-sm bg-danger text-light float-end mb-1" @click="removeCourse(course)">
                           <i class="bi bi-eraser"></i>
                         </button>
                       </div>
@@ -100,7 +112,7 @@ export default {
   },
 
   methods: {
-    callBackTableMark(callback) {
+    calcTableMark(callback) {
       const {tableMark} = this;
       return tableMark
           .filter(course => {
@@ -153,6 +165,13 @@ export default {
 
     reload() {
       window.location.reload();
+    },
+
+    getClassRowCourse(course) {
+      return {
+        'table-danger': parseFloat(course.mark) === 0,
+        'table-warning': [1.0, 1.5, 2.0, 2.5].includes(parseFloat(course.mark)),
+      }
     }
   },
 
@@ -168,13 +187,13 @@ export default {
 
 
     totalCredits() {
-      return this.callBackTableMark(function (acc, course) {
+      return this.calcTableMark(function (acc, course) {
         return acc + course.credit * (parseFloat(course.mark) > 0 ? 1 : 0)
       });
     },
 
     totalMarks() {
-      return this.callBackTableMark(function (acc, course) {
+      return this.calcTableMark(function (acc, course) {
         return acc + course.mark * course.credit * (parseFloat(course.mark) > 0 ? 1 : 0)
       });
     },
@@ -183,8 +202,109 @@ export default {
     getGPA() {
       if (!this.totalCredits) return 0;
       return (this.totalMarks / this.totalCredits).toFixed(2);
-    }
+    },
 
+    getTextMessage() {
+      const mandatoryConditionCourses = this.getMandatoryConditionCourses;
+      const sufficientConditionCourses = this.getSufficientConditionCourses;
+      const gpa = this.getGPA;
+      const credits = this.totalCredits;
+      if (credits === 0 && sufficientConditionCourses.length === 0) return null;
+      if (mandatoryConditionCourses.length === 0) {
+        if (credits >= 120) {
+          if (gpa >= 3.6) {
+            return "Bạn là thực thể siêu cấp vjppro, chúc mừng bạn!"
+          }
+          if (gpa >= 3.2) {
+            return "Bạn đủ điều kiện ra trường bằng giỏi, chúc mừng bạn!";
+          }
+          if (gpa >= 2.5) {
+            return "Bạn đủ điều kiện ra trường bằng khá!";
+          }
+          if (gpa > 2) {
+            return "Bạn đủ điều kiện ra trường bằng TB!";
+          }
+
+          return "Bạn chưa thể ra trường lúc này...";
+        } else {
+          if (gpa > 3.6) {
+            return "Bạn có thể đạt mức siêu cấp vjppro!"
+          }
+          if (gpa > 3.2) {
+            return "Bạn có thể đạt bằng giỏi, Cố lên nhé!";
+          }
+          if (gpa > 2.5) {
+            return "Bạn có thể đạt bằng khá, Cố lên nhé!";
+          }
+
+          return "Bạn cần phải cố gắng nhiều hơn!";
+
+        }
+      } else {
+        if (gpa > 3.6) {
+          return "Bạn có thể đạt mức siêu cấp vjppro!"
+        }
+        if (gpa > 3.2) {
+          return "Bạn có thể đạt bằng giỏi, Cố lên nhé!";
+        }
+        if (gpa > 2.5) {
+          return "Bạn có thể đạt bằng khá, Cố lên nhé!";
+        }
+
+        return "Bạn cần phải cố gắng nhiều hơn!";
+
+      }
+    },
+
+    getSuggest() {
+      const mandatoryConditionCourses = this.getMandatoryConditionCourses;
+      //const sufficientConditionCourses = this.getSufficientConditionCourses;
+      const temp = mandatoryConditionCourses.length > 0 ? `lại ${mandatoryConditionCourses.length} môn và` : ''
+      let condition = false;
+      if (condition) {
+        return `Hệ thống gợi ý bạn cần học ${temp} cải thiện`;
+      }
+      return null;
+    },
+
+    getTextMandatoryCondition() {
+      const courses = this.getMandatoryConditionCourses;
+      if (courses.length === 0) {
+        return "Bạn không có môn nào cần học lại.";
+      }
+      console.log(courses)
+      const list = courses.map(course => {
+        return course.name
+      }).join(' ,');
+      return `Bạn cần học lại ${courses.length} môn: ${list}.`;
+    },
+
+    getMandatoryConditionCourses() {
+      const {tableMark} = this;
+      const courses = tableMark.filter((course) => {
+        return [0].includes(parseFloat(course.mark));
+      });
+      return courses || [];
+    },
+
+    getTextSufficientCondition() {
+      const courses = this.getSufficientConditionCourses;
+      if (courses.length === 0) {
+        return "Bạn là thực thể siêu cấp vjp pro nên hiện tại không cần học cải thiện.";
+      }
+      const list = courses.map(course => {
+        return course.name
+      }).join(' ,');
+      return `Bạn có thể cải thiện ${courses.length} môn: ${list}.`;
+    },
+
+    getSufficientConditionCourses() {
+      const {tableMark} = this;
+      const courses = tableMark.filter((course) => {
+        return [1.0, 1.5, 2.0, 2.5].includes(parseFloat(course.mark));
+      });
+      return courses || [];
+    }
   },
   components: {
     ModalEditCourse,
@@ -195,6 +315,7 @@ export default {
 
 <style lang="scss">
 @import "~bootstrap/scss/mixins/breakpoints";
+
 .table-mark {
 
   .box-info {
