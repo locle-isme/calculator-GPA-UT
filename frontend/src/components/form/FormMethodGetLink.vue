@@ -31,14 +31,16 @@ export default {
     return {
       //urlInput: "https://sv.ut.edu.vn/tra-cuu/ket-qua-hoc-tap.html?k=9tuiGnTHRCO37duCX-1L5V5uXJwQyjfgzkBT6P5lOGE"
       urlInput: "",
+      isLoading: false,
     }
   },
 
   methods: {
     async getData() {
+      this.isLoading = true;
       const {urlInput} = this;
       try {
-        let response = await ApiService.post({url: urlInput});
+        let response = await ApiService.postData({url: urlInput});
         let data = response.data;
         const {transcripts, type, message} = data;
         if (type === "success") {
@@ -51,6 +53,7 @@ export default {
         this.toastError("Có lỗi xảy ra, vui lòng thử lại sau...")
         console.log(e);
       }
+      this.isLoading = false;
     }
   },
 
@@ -58,7 +61,7 @@ export default {
     validInput() {
       const {urlInput} = this;
       if (!urlInput || !urlInput.trim()) return false;
-      return true;
+      return !this.isLoading;
     }
   }
 }

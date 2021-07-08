@@ -1,5 +1,5 @@
 <template>
-  <div class="row mt-4">
+  <div class="row mt-4 method-console">
     <div class="col-12 col-md-8">
       <div class="card">
         <div class="card-body">
@@ -21,11 +21,12 @@
               </textarea>
               </div>
               <div class="form-text">Đăng nhập vào <a href="https://sv.ut.edu.vn" target="_blank"
-                                                      class="btn btn-sm badge bg-dark text-decoration-none">Trang sinh
+                                                      class="btn btn-sm badge bg-dark text-light text-decoration-none">Trang
+                sinh
                 viên</a> và
                 truy cập vào
                 trang <a
-                    href="https://sv.ut.edu.vn/Xemdiem.aspx" target="_blank"
+                    href="https://sv.ut.edu.vn/ket-qua-hoc-tap.html" target="_blank"
                     class="btn btn-sm badge bg-warning text-light text-decoration-none">Bảng điểm</a>.
               </div>
               <div class="form-text">Bấm tổ hợp phím <kbd class="text-sm">Ctrl + Shift + J</kbd> hoặc <kbd>F12 &gt;
@@ -90,6 +91,10 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+.method-console {
+  kbd {
+    padding: 0.1rem 0.4rem;
+  }
+}
 </style>

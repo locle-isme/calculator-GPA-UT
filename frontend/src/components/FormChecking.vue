@@ -28,7 +28,7 @@ export default {
       currentTab: 2,
       navTabs: [
         {type: 2, label: 'Điền link kết quả học tập'},
-        {type: 1, label: 'F12 bàng điểm'},
+        {type: 1, label: 'F12 bảng điểm'},
       ]
     }
   },
@@ -47,11 +47,13 @@ export default {
 </script>
 
 <style lang="scss">
+$my-font-weight: 500;
 .form-checking {
   .nav-tabs {
     cursor: pointer;
 
     .nav-link {
+      font-weight: $my-font-weight;
       user-select: none;
       font-size: 0.9em;
     }
