@@ -10,8 +10,8 @@
         </div>
         <div class="d-flex">
           <a href="https://www.facebook.com/LocLe.isme" target="_blank"
-             class="btn btn-outline-dark me-2 text-light" type="button">
-            <i class="fa fa-support"></i> Hổ trợ/báo lỗi <i class="bi bi-exclamation-triangle"></i></a>
+             class="btn btn-sm btn-outline-dark me-2 text-light" type="button">
+            <i class="bi bi-patch-question"></i> Trợ giúp & hổ trợ</a>
         </div>
       </div>
     </nav>

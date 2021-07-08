@@ -14,7 +14,8 @@
                 </div>
                 <div class="d-flex flex-grow-1 flex-column">
                   <h6 class="message mb-0">{{ getTextMessage }}</h6>
-                  <small class="text-danger mb-1" v-if="getTextMessage">*Điều kiện: tổng số tín chỉ học lại không vượt quá 5% của tổng tín chỉ
+                  <small class="text-danger mb-1" v-if="getTextMessage">*Điều kiện: tổng số tín chỉ học lại không vượt
+                    quá 5% của tổng tín chỉ
                     ~
                     {{ Math.round(totalCredits / 100 * 5) }} tín chỉ.</small>
                   <div class="mb-1" v-html="getTextMandatoryCondition"></div>
@@ -25,24 +26,26 @@
               </div>
               <div class="d-flex flex-column">
                 <div class="clearfix w-100 mb-2">
-                  <button class="btn btn-sm btn-danger float-end" @click="reset()">Reset từ đầu</button>
+                  <button class="btn btn-sm btn-secondary text-light float-end" @click="reload()">
+                    Reload lại trang <i class="bi bi-arrow-repeat"></i>
+                  </button>
                 </div>
                 <div class="clearfix w-100 mb-2">
-                  <button class="btn btn-sm btn-secondary text-light float-end" @click="reload()">Reload lại trang
-                  </button>
+                  <button class="btn btn-sm btn-danger float-end" @click="reset()">Reset từ đầu <i
+                      class="bi bi-arrow-counterclockwise"></i></button>
                 </div>
               </div>
             </div>
 
 
             <div class="clearfix">
-              <button class="btn btn-sm btn-success float-end" @click="setShowModal(1)">Thêm</button>
+              <button class="btn btn-sm btn-success float-end" @click="setShowModal(1)">Thêm <i class="bi bi-plus-lg"></i></button>
             </div>
             <div class="table-responsive-md">
               <table class="table">
                 <thead>
                 <tr>
-                  <th scope="col" style="width: 130px">
+                  <th scope="col" style="width: 130px;padding-left: 0;">
                     <button class="btn btn-sm btn-primary ml-0" @click="handleSelectAll()">{{ textSelectAllBtn }}
                     </button>
                   </th>
