@@ -7,7 +7,7 @@ const API = axios.create({
 
 
 export const ApiService = {
-    post(params = {}) {
+    postData(params = {}) {
         return API.post('get-data', params);
     }
 }
