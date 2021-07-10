@@ -1,24 +1,21 @@
-# calculator-gpa
+# CALCULATOR GPA
 
-## Project setup
-```
-yarn install
-```
+## SETUP GUILD FOR FRONTEND
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+[README](frontend/README.md)
 
-### Compiles and minifies for production
-```
-yarn build
-```
+## SETUP GUILD FOR BACKEND
 
-### Lints and fixes files
-```
-yarn lint
-```
+[README](backend/readme.md)
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Authors
+
+- **Loc Le** - https://github.com/locle-isme/
+
+
+## Acknowledgments
+"Mọi tính toán đều trở nên vô nghĩa nếu bạn không thực hiện"
+
+Good luck for u ♥
+
+(❁´◡`❁)

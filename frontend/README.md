@@ -1,4 +1,4 @@
-# calculator-gpa
+# CALCULATOR GPA FRONTEND
 
 ## Project setup
 ```
@@ -15,10 +15,25 @@ yarn serve
 yarn build
 ```
 
-### Lints and fixes files
-```
-yarn lint
+## Building
+
+### Configuration your API url from path:
+```bash
+.
+├── frontend
+│   ├─────── src
+│   │      ├── common
+│   │      │   ├───── api.js
+
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
+## Technologies used
+
+- [Vue](https://vuejs.org/v2/guide/) - Javascript framework
+- [Sass](https://sass-lang.com/documentation) - CSS extension language
+- [Bootstrap](https://getbootstrap.com/) - CSS framework
+
+## Authors
+
+- **Loc Le** - https://github.com/locle-isme/
