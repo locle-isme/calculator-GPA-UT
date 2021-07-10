@@ -11,7 +11,7 @@
         <div class="d-flex">
           <a href="https://www.facebook.com/LocLe.isme" target="_blank"
              class="btn btn-sm btn-outline-dark me-2 text-light" type="button">
-            <i class="bi bi-patch-question"></i> Trợ giúp & hổ trợ</a>
+            <i class="bi bi-patch-question"></i> Trợ giúp & hỗ trợ</a>
         </div>
       </div>
     </nav>
