@@ -14,10 +14,13 @@
                 </div>
                 <div class="d-flex flex-grow-1 flex-column">
                   <h6 class="message mb-0">{{ getTextMessage }}</h6>
-                  <small class="text-danger mb-1" v-if="getTextMessage">*Điều kiện: tổng số tín chỉ học lại không vượt
+
+<!--                  <small class="text-danger mb-1" v-if="getTextMessage">*Điều kiện: tổng số tín chỉ học lại không vượt
                     quá 5% của tổng tín chỉ
                     ~
-                    {{ Math.round(totalCredits / 100 * 5) }} tín chỉ.</small>
+                    {{ Math.round(totalCredits / 100 * 5) }} tín chỉ.</small>-->
+                  <small class="text-danger mb-1" v-if="getTextMessage">*Điều kiện: tổng số tín chỉ học lại không vượt
+                    quá 5% của tổng tín chỉ</small>
                   <div class="mb-1" v-html="getTextMandatoryCondition"></div>
                   <div class="mb-1" v-html="getTextSufficientCondition"></div>
                   <div class="mb-1">{{ getSuggest }}</div>
@@ -46,7 +49,7 @@
                 <thead>
                 <tr>
                   <th scope="col" style="width: 130px;padding-left: 0;">
-                    <button class="btn btn-sm btn-primary ml-0" @click="handleSelectAll()">{{ textSelectAllBtn }}
+                    <button class="btn btn-sm btn-primary ml-0" @click="handleSelectAll()" :disabled="tableMark.length  === 0">{{ textSelectAllBtn }}
                     </button>
                   </th>
                   <th scope="col">Tên học phần</th>
