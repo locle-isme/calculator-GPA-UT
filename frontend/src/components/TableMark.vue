@@ -8,19 +8,19 @@
             <div class="d-flex flex-column">
               <div class="box-info d-flex flex-column flex-md-row flex-nowrap p-2">
                 <div class="d-flex flex-column" style="min-width: 200px;">
-                  <div class="user-name">{{ user.name || "#Unknown" }}</div>
-                  <div>GPA của bạn là <span class="fw-bolder">{{ getGPA }}</span></div>
-                  <div>Tổng số tín chỉ <span class="fw-bolder">{{ totalCredits }}</span></div>
+                  <div class="user-name mb-1">{{ user.name || "#Unknown" }}</div>
+                  <div class="mb-1">GPA của bạn là <span class="fw-bolder">{{ getGPA }}</span></div>
+                  <div class="mb-1">Tổng số tín chỉ <span class="fw-bolder">{{ totalCredits }}</span></div>
                 </div>
                 <div class="d-flex flex-grow-1 flex-column">
                   <h6 class="message mb-0">{{ getTextMessage }}</h6>
 
-<!--                  <small class="text-danger mb-1" v-if="getTextMessage">*Điều kiện: tổng số tín chỉ học lại không vượt
-                    quá 5% của tổng tín chỉ
-                    ~
-                    {{ Math.round(totalCredits / 100 * 5) }} tín chỉ.</small>-->
-                  <small class="text-danger mb-1" v-if="getTextMessage">*Điều kiện: tổng số tín chỉ học lại không vượt
-                    quá 5% của tổng tín chỉ</small>
+                  <!--                  <small class="text-danger mb-1" v-if="getTextMessage">*Điều kiện: tổng số tín chỉ học lại không vượt
+                                      quá 5% của tổng tín chỉ
+                                      ~
+                                      {{ Math.round(totalCredits / 100 * 5) }} tín chỉ.</small>-->
+                  <small class="text-danger mb-1" v-if="getTextMessage">Điều kiện: tổng số tín chỉ học lại không vượt
+                    quá 5% của tổng tín chỉ.</small>
                   <div class="mb-1" v-html="getTextMandatoryCondition"></div>
                   <div class="mb-1" v-html="getTextSufficientCondition"></div>
                   <div class="mb-1">{{ getSuggest }}</div>
@@ -42,14 +42,16 @@
 
 
             <div class="clearfix">
-              <button class="btn btn-sm btn-success float-end" @click="setShowModal(1)">Thêm <i class="bi bi-plus-lg"></i></button>
+              <button class="btn btn-sm btn-success float-end" @click="setShowModal(1)">Thêm <i
+                  class="bi bi-plus-lg"></i></button>
             </div>
             <div class="table-responsive-md">
               <table class="table">
                 <thead>
                 <tr>
                   <th scope="col" style="width: 130px;padding-left: 0;">
-                    <button class="btn btn-sm btn-primary ml-0" @click="handleSelectAll()" :disabled="tableMark.length  === 0">{{ textSelectAllBtn }}
+                    <button class="btn btn-sm btn-primary ml-0" @click="handleSelectAll()"
+                            :disabled="tableMark.length  === 0">{{ textSelectAllBtn }}
                     </button>
                   </th>
                   <th scope="col">Tên học phần</th>
@@ -71,9 +73,11 @@
                     <td>{{ parseFloat(course.mark).toFixed(2) }}</td>
                     <td>
                       <div class="clearfix">
-                        <button class="btn btn-sm bg-warning text-dark float-start mb-1" @click="editCourse(course)"><i
+                        <button class="btn btn-sm bg-warning bg-gradient text-dark float-start mb-1"
+                                @click="editCourse(course)"><i
                             class="bi bi-pencil-square"></i></button>
-                        <button class="btn btn-sm bg-danger text-light float-end mb-1" @click="removeCourse(course)">
+                        <button class="btn btn-sm bg-danger bg-gradient text-light float-end mb-1"
+                                @click="removeCourse(course)">
                           <i class="bi bi-eraser"></i>
                         </button>
                       </div>
@@ -97,6 +101,7 @@
 <script>
 import ModalAddNewCourse from "./ModalAddNewCourse";
 import ModalEditCourse from "./ModalEditCourse";
+import {BlockCourses} from "../common/block_courses";
 
 export default {
   props: {
@@ -164,9 +169,13 @@ export default {
 
     reset() {
       const {data} = this.transcripts;
-      this.tableMark = data.map((course) => {
-        return {...course, selected: !!course.mark}
-      }) || [];
+      this.tableMark = data
+          .filter((course) => {
+            return !BlockCourses.includes((course.id));
+          })
+          .map((course) => {
+            return {...course, selected: !!course.mark}
+          }) || [];
     },
 
     reload() {
@@ -175,8 +184,10 @@ export default {
 
     getClassRowCourse(course) {
       return {
-        'table-danger': parseFloat(course.mark) === 0,
-        'table-warning': [1.0, 1.5, 2.0, 2.5].includes(parseFloat(course.mark)),
+        /*'table-danger': parseFloat(course.mark) === 0,
+        'table-warning': [1.0, 1.5, 2.0, 2.5].includes(parseFloat(course.mark)),*/
+        'table-red': parseFloat(course.mark) === 0,
+        'table-yellow': [1.0, 1.5, 2.0, 2.5].includes(parseFloat(course.mark)),
       }
     }
   },
@@ -222,13 +233,13 @@ export default {
             return "Bạn là thực thể siêu cấp vjppro, chúc mừng bạn!"
           }
           if (gpa >= 3.2) {
-            return "Bạn đủ điều kiện ra trường bằng giỏi, chúc mừng bạn!";
+            return "Bạn có khả năng ra trường bằng giỏi, chúc mừng bạn!";
           }
           if (gpa >= 2.5) {
-            return "Bạn đủ điều kiện ra trường bằng khá!";
+            return "Bạn có khả năng ra trường bằng khá!";
           }
           if (gpa > 2) {
-            return "Bạn đủ điều kiện ra trường bằng TB!";
+            return "Bạn có khả năng ra trường bằng TB!";
           }
 
           return "Bạn chưa thể ra trường lúc này...";
@@ -281,7 +292,7 @@ export default {
       console.log(courses)
       const list = courses.map(course => {
         return course.name
-      }).join(' ,');
+      }).join(', ');
       return `Bạn cần học lại ${courses.length} môn: ${list}.`;
     },
 
@@ -300,16 +311,22 @@ export default {
       }
       const list = courses.map(course => {
         return course.name
-      }).join(' ,');
+      }).join(', ');
       return `Bạn có thể cải thiện ${courses.length} môn: ${list}.`;
     },
 
     getSufficientConditionCourses() {
       const {tableMark} = this;
-      const courses = tableMark.filter((course) => {
+      let courses = tableMark.filter((course) => {
         return [1.0, 1.5, 2.0, 2.5].includes(parseFloat(course.mark));
-      });
-      return courses || [];
+      }) || [];
+
+      if (courses.length === 0) {
+        courses = tableMark.filter((course) => {
+          return [3.0].includes(parseFloat(course.mark));
+        })
+      }
+      return courses;
     }
   },
   components: {
@@ -337,6 +354,31 @@ export default {
     }
 
 
+  }
+
+  .table {
+
+    thead {
+      th {
+        font-weight: 500 !important;
+      }
+    }
+
+    td {
+      vertical-align: middle;
+    }
+  }
+
+  table, th, tr, td {
+    border-bottom: none;
+  }
+
+  .table-red {
+    background: rgba(255, 81, 89, 0.55);
+  }
+
+  .table-yellow {
+    background: rgba(255, 243, 143, 0.52);
   }
 }
 

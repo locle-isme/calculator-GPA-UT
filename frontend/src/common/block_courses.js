@@ -1,4 +1,4 @@
-const excepts = [
+export  const BlockCourses = [
     '010100700704',
     '010100700604',
     '010100410121',
@@ -13,4 +13,3 @@ const excepts = [
     '010100410803',
     '010100410605',
 ];
-export default excepts;

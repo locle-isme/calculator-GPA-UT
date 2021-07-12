@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="app2">
     <VHeader/>
     <main class="main-container">
       <div class="container">
@@ -55,17 +55,19 @@ export default {
 </script>
 
 <style lang="scss">
-.main-container {
-  min-height: calc(100vh - 56px - 35px - 1rem);
-  padding-top: 3rem;
-}
+#app2 {
+  .main-container {
+    min-height: calc(100vh - 56px - 35px - 1rem);
+    padding-top: 3rem;
+  }
 
-.v-toast {
-  z-index: 9999999 !important;
-  font-size: 0.8em;
-}
+  .v-toast {
+    z-index: 9999999 !important;
+    font-size: 0.8em;
+  }
 
-.card {
-  transition: 300ms;
+  .card {
+    transition: 300ms;
+  }
 }
 </style>
