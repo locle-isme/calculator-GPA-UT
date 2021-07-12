@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express')
+const fs = require('fs')
 const cors = require('cors')
 const axios = require('axios')
 const nodeHtmlParse = require('node-html-parser');
@@ -21,6 +22,11 @@ app.post('/get-data', async (req, res) => {
     }
 })
 
+function getBlockCourses() {
+    let fileName = "block_courses.txt";
+    let text = fs.readFileSync(fileName).toString('utf-8');
+    return text.split("\n");
+}
 
 function getTranscript(stringSource) {
     try {
@@ -36,19 +42,9 @@ function getTranscript(stringSource) {
             rowTableData = root.querySelectorAll('table#xemDiem tbody tr');
         }
         let listFilter = rowTableData.filter(row => {
-            console.log(row.childNodes.length)
             return row.childNodes.length === 25
         });
-        console.log(listFilter.length)
-        let listBanned = [
-            '010100700704',
-            '010100700604',
-            '010100410121',
-            '010100700804',
-            '010100410505',
-            '010100410601',
-            '010100410802',
-        ];
+        let listBanned = getBlockCourses();
         let tempTableData = listFilter.map(row => {
             let listTd = row.querySelectorAll('td');
             if (listTd[0].classList.contains('row-head')) {
@@ -73,12 +69,13 @@ function getTranscript(stringSource) {
         })
 
 
-        console.log(resultTable)
+        //console.log(resultTable)
         return {
             user: userInfo,
             data: resultTable,
         }
     } catch (e) {
+        console.log(e)
         throw e;
     }
 }
